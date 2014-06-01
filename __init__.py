@@ -16,3 +16,7 @@ __version__ = "0.9"
 # Import the struct tools.
 from struct import *
 
+# Import the basic matrix interface.
+from matrix import *
+
+
