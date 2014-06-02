@@ -55,3 +55,93 @@ def numel(x):
     else:
         # This is arguable; anything else has numel(x) == 1.
         return 1
+        
+# Function to concatenate arrays horizontally
+def horzcat(*x):
+    """
+    Concatenate arrays horizontally.
+    
+    :Call:
+        >>> X = horzcat(x1, x2, ... )
+        >>> X = horzcat(x1, x2, x3, ... )
+    
+    :Inputs:
+        *x1*: :class:`numpy.array`
+            An array or list
+        *x2*: :class:`numpy.array`
+            An array with the same dimensions as *x1* except possibly the number
+            of rows
+            
+    :Outputs:
+        *X*: :class:`numpy.array`
+            Concatenated array, like ``[x1, x2]`` in Matlab
+    """
+    # Versions:
+    #  2014.06.01 @ddalle  : First version
+    
+    # Convert to arrays if necessary.
+    X = (_np.array(xi) for xi in x)
+    # For now, just use the built-in function (which has unusual syntax).
+    return _np.hstack(X)
+        
+# Function to concatenate arrays horizontally
+def vertcat(*x):
+    """
+    Concatenate arrays vertically.
+    
+    :Call:
+        >>> X = vertcat(x1, x2, ... )
+        >>> X = vertcat(x1, x2, x3, ... )
+    
+    :Inputs:
+        *x1*: :class:`numpy.array`
+            An array or list
+        *x2*: :class:`numpy.array`
+            An array with the same dimensions as *x1* except possibly the number
+            of rows
+            
+    :Outputs:
+        *X*: :class:`numpy.array`
+            Concatenated array, like ``[x1; x2]`` in Matlab
+    """
+    # Versions:
+    #  2014.06.01 @ddalle  : First version
+    
+    # Convert to arrays if necessary.
+    X = (_np.array(xi) for xi in x)
+    # For now, just use the built-in function (which has unusual syntax).
+    return _np.vstack(X)
+    
+# Convert to single array.
+def tovector(x):
+    """
+    Convert to a one-dimensional NumPy array.  This has some of the same
+    characteristics as columnization in Matlab.  That is, it's similar to `x(:)`
+    in that language.
+    
+    :Call:
+        >>> v = tovector(x)
+        
+    :Inputs:
+        *x*: :class:`numpy.array`
+            Any *n*-dimensional array object
+    
+    :Outputs:
+        *v*: :class:`numpy.array`
+    """
+    # Versions:
+    #  2014.06.01 @ddalle  : First version
+    
+    # Check if it's an array.
+    if type(x) is _np.ndarray:
+        # Use it.
+        X = x
+    else:
+        # Convert it.
+        X = _np.array(x)
+    # Use the built-in method that I can never remember.
+    return X.flatten()
+    
+    
+    
+    
